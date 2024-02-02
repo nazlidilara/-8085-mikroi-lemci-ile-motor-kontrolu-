@@ -1,0 +1,24 @@
+;8085 mikroişlemcili sistem kullanılarak 3 eksenli(57HS22 motor tipi ve CWD556 driver) tezgahı 
+
+@next 0800
+MVi D,0A
+LOOP3:MVi C,A0
+LOOP2:MVi B,FF    ;9f yaz 
+LOOP1:MVi A,03
+OUT 30  
+CALL DELAY 
+MVi A,02 
+OUT 30
+CALL DELAY 
+DCR B
+JNZ  LOOP1
+DCR C 
+JNZ LOOP1
+DCR D 
+JNZ LOOP1
+HLT 
+
+DELAY: MVi E, 05
+y:DCR E
+JNZ y
+RET
