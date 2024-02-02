@@ -1,24 +1,27 @@
 ;8085 mikroişlemcili sistem kullanılarak 3 eksenli(57HS22 motor tipi ve CWD556 driver) tezgahı 
 
-@next 0800
-MVi D,0A
-LOOP3:MVi C,A0
-LOOP2:MVi B,FF    ;9f yaz 
-LOOP1:MVi A,03
-OUT 30  
-CALL DELAY 
-MVi A,02 
-OUT 30
-CALL DELAY 
-DCR B
-JNZ  LOOP1
-DCR C 
-JNZ LOOP1
-DCR D 
-JNZ LOOP1
-HLT 
+@next 0800  ; Programın başlangıcını belirten etiket
 
-DELAY: MVi E, 05
-y:DCR E
-JNZ y
-RET
+MVi D, 0A     ; D register'ına 0A değerini yükle
+
+LOOP3: MVi C, A0   ; C register'ına A0 değerini yükle
+LOOP2: MVi B, FF    ; B register'ına FF (hex) değerini yükle ; 9f yaz
+LOOP1: MVi A, 03    ; A register'ına 03 değerini yükle
+OUT 30            ; 30 numaralı çıkış portuna A register'ındaki değeri yaz
+CALL DELAY        ; DELAY subroutine'u çağır
+MVi A, 02         ; A register'ına 02 değerini yükle
+OUT 30            ; 30 numaralı çıkış portuna A register'ındaki değeri yaz
+CALL DELAY        ; DELAY altporgramini çağır
+DCR B             ; B register'ındaki değeri azalt
+JNZ LOOP1         ; Eğer B sıfır değilse LOOP1'e git
+DCR C             ; C register'ındaki değeri azalt
+JNZ LOOP1         ; Eğer C sıfır değilse LOOP1'e git
+DCR D             ; D register'ındaki değeri azalt
+JNZ LOOP1         ; Eğer D sıfır değilse LOOP1'e git
+HLT               ; Halt komutu ile programı durdur
+
+DELAY: MVi E, 05   ; E register'ına 05 değerini yükle
+y: DCR E           ; E register'ındaki değeri azalt
+JNZ y             ; Eğer E sıfır değilse y etiketine git
+RET              ; altprogramdan cik
+
