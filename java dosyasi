@@ -1,4 +1,4 @@
-;8085 mikroişlemcili sistem kullanılarak 3 eksenli(57HS22 motor tipi ve CWD556 driver) tezgahı 
+;8085 mikroişlemcili sistem kullanılarak (57HS22 motor tipi ve CWD556 driver) tezgah
 
 @next 0800  ; Programın başlangıcını belirten etiket
 
